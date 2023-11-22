@@ -2,7 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3000;
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,6 +29,6 @@ app.get('/display-values', (req, res) => {
     res.json(postedValues);
 });
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+app.listen(port, "0.0.0.0", () => {
+    console.log(`Server is running on port ${port}`);
+  });
